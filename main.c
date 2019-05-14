@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 	char **opcodes = NULL;
 	size_t len = 0;
 	ssize_t read;
+	size_t linenumber = 0;
 
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
@@ -21,6 +22,7 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
+		linenumber++;
 		printf("Readline: %s\n", line);
 		/* get function for opcode */
 		/* op_func = get_op_func(opcodes[0]); */
