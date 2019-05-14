@@ -1,4 +1,5 @@
 #include "header.h"
+char *global_line;
 
 /**
  * main - main function for Monty interpreter
@@ -9,7 +10,7 @@
 int main(int argc, char *argv[])
 {
 	FILE *fp;
-	stack_t **head;
+	stack_t **head = NULL;
 	char *line = NULL;
 	char **opcodes = NULL;
 	size_t len = 0;
@@ -23,13 +24,13 @@ int main(int argc, char *argv[])
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		linenumber++;
-		printf("Readline: %s\n", line);
+		global_line = line;
+		printf("Readline: %s\n", global_line);
 		/* get function for opcode */
 		/* op_func = get_op_func(opcodes[0]); */
 		/* store somewhere if push or do something*/
-		if (strncmp(line, "push", 4) == 0)
+		if (strncmp(global_line, "push", 4) == 0)
 			printf("Push found!");
-
 		free(line);
 	}
 	fclose(fp);
