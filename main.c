@@ -9,19 +9,31 @@
 int main(int argc, char *argv[])
 {
 	FILE *fp;
+	stack_t **head;
 	char *line = NULL;
+	char **opcodes = NULL;
 	size_t len = 0;
+	ssize_t read;
 
 	fp = fopen(argv[1], "r");
-	if (fp = NULL)
+	if (fp == NULL)
 		exit(EXIT_FAILURE);
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
-		/* parse */
+		printf("Readline: %s\n", line);
+		/* get function for opcode */
+		/* op_func = get_op_func(opcodes[0]); */
+		/* store somewhere if push or do something*/
+		if (strncmp(line, "push", 4) == 0)
+			printf("Push found!");
 
 		free(line);
 	}
+	fclose(fp);
+
+
+
 
 	exit(EXIT_SUCCESS);
 }
