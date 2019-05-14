@@ -12,22 +12,23 @@ int (*get_op_func(const char *s))(char *)
 	instruction_t instructions[] = {
 		{"push", op_push},
 		{"pall", op_pall},
-		{"", va_print_i},
-		{"d", va_print_i},
-		{"b", va_print_b},
-		{"R", va_print_rot13},
+		{"pint", op_pint},
+		{"pop", op_pop},
+		{"swap", op_swap},
+		{"add", op_add},
+		{"nop", op_nop},
 		{NULL, NULL}
 	};
 
 	int i = 0;
 
 	/** loop through fmatters id member **/
-	while (printers[i].id)
+	while (instructions[i].opcode)
 	{
-		if (*s == *(printers[i].id))
+		if (*s == *(instructions[i].opcode))
 			break;
 		i++;
 	}
 
-	return (printers[i].f);
+	return (instructions[i].f);
 }
