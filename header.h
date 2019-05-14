@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -33,5 +35,15 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+size_t print_dlistint(const stack_t *h);
+size_t dlistint_len(const stack_t *h);
+stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
+void free_dlistint(stack_t *head);
+stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
+int sum_dlistint(stack_t *head);
+stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n);
+int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 
 #endif
