@@ -6,8 +6,8 @@
 *
 * Return: amount of nodes
 */
-
-size_t print_stack_t(const stack_t *h)
+/*
+void print_stack_t(const stack_t *h, int line_number)
 {
 	int i;
 
@@ -16,16 +16,15 @@ size_t print_stack_t(const stack_t *h)
 		printf("%d\n", h->n);
 		h = h->next;
 	}
-	return (i);
 }
-
+*/
 /**
 * stack_t_len - return length of the linked list
 * @h: pointer to the nodes of the list
 *
 * Return: number of nodes in the list
 */
-
+/*
 size_t stack_t_len(const stack_t *h)
 {
 	stack_t *temp = (stack_t *)h;
@@ -36,7 +35,7 @@ size_t stack_t_len(const stack_t *h)
 
 	return (i);
 }
-
+*/
 /**
 * add_dnodeint - add a node to the beginning of the list with info
 * @head: double pointer to the nodes in the list
@@ -44,7 +43,7 @@ size_t stack_t_len(const stack_t *h)
 *
 * Return: new node, added to list
 */
-
+/*
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
 	stack_t *new = malloc(sizeof(stack_t));
@@ -63,7 +62,7 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 
 	return (new);
 }
-
+*/
 /**
 * add_dnodeint_end - add node to end of linked list
 * @head: double pointer to nodes in the list
@@ -72,31 +71,45 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 * Return: new node on success, NULL on failure
 */
 
-stack_t *add_dnodeint_end(stack_t **head, const int n)
+int add_dnodeint_end(stack_t **head, const int line_number)
 {
+/*
 	stack_t *temp;
 	stack_t *new = malloc(sizeof(stack_t));
+*/
+	char *arg = NULL;
+/*	int num;*/
+	(void)head;
 
+	printf("we got here\n");
+
+	arg = strtok(global_line, " ");
+	arg = strtok(NULL, " ");
+	printf("arg = %s\n", arg);
+
+/*	num = atoi(arg);*/
+
+/*
 	if (!head || !new)
-		return (NULL);
+		return (0);
 
 	temp = *head;
 
-	new->n = n;
+	new->n = num;
 	new->next = NULL;
 
 	if (!*head)
 	{
 		new->prev = NULL;
 		*head = new;
-		return (new);
+		return (line_number);
 	}
 	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
 	new->prev = temp;
-
-	return (new);
+*/
+	return (line_number);
 }
 
 

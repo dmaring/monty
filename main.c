@@ -12,10 +12,11 @@ int main(int argc, char *argv[])
 	FILE *fp;
 	stack_t **head = NULL;
 	char *line = NULL;
-	char **opcodes = NULL;
+	/* char **opcodes = NULL;*/
 	size_t len = 0;
 	ssize_t read;
 	size_t linenumber = 0;
+	(void)argc;
 
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
@@ -25,12 +26,15 @@ int main(int argc, char *argv[])
 	{
 		linenumber++;
 		global_line = line;
+		strtok(global_line, " ");
 		printf("Readline: %s\n", global_line);
 		/* get function for opcode */
 		/* op_func = get_op_func(opcodes[0]); */
 		/* store somewhere if push or do something*/
 		if (strncmp(global_line, "push", 4) == 0)
-			printf("Push found!");
+		{
+			add_dnodeint_end(head, linenumber);
+		}
 		free(line);
 	}
 	fclose(fp);
