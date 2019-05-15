@@ -33,6 +33,8 @@ void op_push(stack_t **head, unsigned int line_number)
 	stack_t *new = malloc(sizeof(stack_t));
 	line_number = line_number;
 
+	if (!new)
+		return;
 	data = atoi(global_struct->arg_list[1]);
 
 	new->n = data;
