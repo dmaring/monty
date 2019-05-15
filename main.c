@@ -1,5 +1,5 @@
 #include "header.h"
-char *global_line;
+global_struct_t *global_struct;
 
 /**
  * main - main function for Monty interpreter
@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
 	ssize_t read;
 	size_t linenumber = 0;
 
+	global_struct = malloc(sizeof(instruction_t));
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 		exit(EXIT_FAILURE);
@@ -24,15 +25,17 @@ int main(int argc, char *argv[])
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		linenumber++;
-		global_line = line;
-		printf("Readline: %s\n", global_line);
-		/* get function for opcode */
+		printf("Readline: %s\n", line);
+		/* add line to global_struct */
+		/* add line number to global struct */
+		/* get function for opcode *//
 		/* op_func = get_op_func(opcodes[0]); */
 		/* store somewhere if push or do something*/
-		if (strncmp(global_line, "push", 4) == 0)
+		if (strncmp(line, "push", 4) == 0)
 			printf("Push found!");
 		free(line);
 	}
+	free(global_struct);
 	fclose(fp);
 
 

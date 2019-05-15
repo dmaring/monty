@@ -36,7 +36,19 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern char *global_line;
+/**
+ * struct global_struct_s -
+ * @linenum: linenumber as integer
+ * @line: pointer to string
+ *
+ * Description: global structure to hold common informatin
+ */
+typedef struct global_struct_s
+{
+        char *line;
+        int linenumber;
+} global_struct_t;
+
 size_t print_dlistint(const stack_t *h);
 size_t dlistint_len(const stack_t *h);
 stack_t *add_dnodeint(stack_t **head, const int n);
