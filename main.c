@@ -10,15 +10,15 @@ global_struct_t *global_struct;
 int main(int argc, char *argv[])
 {
 	FILE *fp;
-	stack_t **head = NULL;
+	stack_t *head = NULL;
 	char *line = NULL;
-	char **opcodes = NULL;
-
+/*	char **opcodes = NULL;*/
 	size_t len = 0;
 	ssize_t read;
 	size_t linenumber = 0;
 	(void)argc;
 
+			printf("we got here\n");
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 		exit(EXIT_FAILURE);
@@ -38,8 +38,11 @@ int main(int argc, char *argv[])
 		/* get function for opcode */
 		/* op_func = get_op_func(opcodes[0]); */
 		/* store somewhere if push or do something*/
-		if (strncmp(global_struct->line, "push", 4) == 0)
-			printf("Push found!\n");
+		if (strcmp(global_struct->arg_list[0], "push") == 0)
+		{
+			printf("we got here: %s\n", global_struct->arg_list[0]);
+			add_dnode(&head, linenumber);
+		}
 		free_global_struct(global_struct);
 
 	}

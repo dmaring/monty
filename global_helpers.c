@@ -11,7 +11,7 @@ global_struct_t *create_global_struct(int linenumber, char *line)
 {
 	unsigned int ll, i;
 	global_struct_t *ptr;
-	char **arg_list = NULL;
+/*	char **arg_list = NULL;*/
 
 	ptr = malloc(sizeof(global_struct_t));
 	if (ptr == NULL)
