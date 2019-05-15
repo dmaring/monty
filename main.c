@@ -1,5 +1,5 @@
 #include "header.h"
-global_struct_t *global_struct;
+global_struct_t *global_struct = NULL;
 
 /**
  * main - main function for Monty interpreter
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	size_t len = 0;
 	ssize_t read;
 	unsigned int linenumber = 0;
-	void (*opfunc)(stack_t **head, unsigned int linenumber);
+	void (*opfunc)(stack_t **head, unsigned int linenumber) = NULL;
 	(void)argc;
 
 	fp = fopen(argv[1], "r");
@@ -53,14 +53,7 @@ int main(int argc, char *argv[])
 		free_global_struct(global_struct);
 
 	}
-<<<<<<< HEAD
 	free_all(head, line, fp);
-=======
 
-	free_stack_t(head);
-	free(line);
-	fclose(fp);
-
->>>>>>> 6d544cda38ef088b9ba66475dee8d7f89e388bed
 	exit(EXIT_SUCCESS);
 }

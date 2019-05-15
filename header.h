@@ -59,11 +59,7 @@ size_t dlistint_len(const stack_t *h);
 void op_push(stack_t **head, unsigned int line_number);
 void op_pall(stack_t **h, unsigned int line_number);
 int add_dnodeint_end(stack_t **head, const int line_number);
-<<<<<<< HEAD
 void free_all(stack_t *head, char *line, FILE *fp);
-=======
-void free_stack_t(stack_t *head);
->>>>>>> 6d544cda38ef088b9ba66475dee8d7f89e388bed
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
 int sum_dlistint(stack_t *head);
 stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n);

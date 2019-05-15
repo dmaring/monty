@@ -37,7 +37,7 @@ int wordcount(char *str)
 
 char **strtow(char *str)
 {
-	char *cpy, **words;
+	char *cpy = NULL, **words = NULL;
 	int i = 0, j = 0, len = 0, total = 0;
 
 	if (str == NULL || *str == 0)
@@ -82,7 +82,7 @@ char **strtow(char *str)
  */
 void rm_nl(char **lineptr)
 {
-	char *ptr;
+	char *ptr = NULL;
 	int i;
 
 	ptr = *lineptr;
