@@ -7,7 +7,7 @@
  *
  * Return: pointer to new global_struct
  */
-global_struct_t *create_global_struct(int linenumber, char *line)
+global_struct_t *create_global_struct(unsigned int linenumber, char *line)
 {
 	unsigned int ll, i;
 	global_struct_t *ptr;

@@ -7,14 +7,15 @@
 * Return: amount of nodes
 */
 
-void print_stack_t(const stack_t *h, int line_number)
+void print_stack_t(stack_t **h, unsigned int line_number)
 {
 	int i;
-	(void)line_number;
-	for (i = 0; h; i++)
+	line_number = line_number;
+
+	for (i = 0; *h; i++)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		printf("%d\n", (*h)->n);
+		*h = (*h)->next;
 	}
 }
 
@@ -26,21 +27,17 @@ void print_stack_t(const stack_t *h, int line_number)
 * Return: new node, added to list
 */
 
-void add_dnode(stack_t **head, const int linenumber)
+void add_dnode(stack_t **head, unsigned int line_number)
 {
 	int data;
 	stack_t *new = malloc(sizeof(stack_t));
-	(void)linenumber;
+	line_number = line_number;
 
-	printf("we got here %s\n", global_struct->arg_list[1]);
 	data = atoi(global_struct->arg_list[1]);
 
 	new->n = data;
 	new->prev = NULL;
 	new->next = NULL;
-
-	if (!head)
-		*head = new;
 
 	if (*head)
 	{
@@ -49,7 +46,6 @@ void add_dnode(stack_t **head, const int linenumber)
 	}
 	*head = new;
 
-	print_stack_t(*head, linenumber);
 }
 
 /**

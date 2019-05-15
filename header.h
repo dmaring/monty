@@ -48,7 +48,7 @@ typedef struct instruction_s
 typedef struct global_struct_s
 {
         char *line;
-        int linenumber;
+        unsigned int linenumber;
 	char **arg_list;
 } global_struct_t;
 
@@ -56,7 +56,7 @@ extern global_struct_t *global_struct;
 char **strtow(char *str);
 size_t print_dlistint(const stack_t *h);
 size_t dlistint_len(const stack_t *h);
-void add_dnode(stack_t **head, const int linenumber);
+void add_dnode(stack_t **head, unsigned int line_number);
 int add_dnodeint_end(stack_t **head, const int line_number);
 void free_dlistint(stack_t *head);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
@@ -66,7 +66,9 @@ char **strtow(char *str);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 void rm_nl(char **lineptr);
 void free_global_struct(global_struct_t *ptr);
-global_struct_t *create_global_struct(int linenumber, char *line);
+global_struct_t *create_global_struct(unsigned int linenumber, char *line);
 int _strlen(char *s);
+int wordcount(char *str);
+void print_stack_t(stack_t **h, unsigned int line_number);
 
 #endif

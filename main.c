@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 /*	char **opcodes = NULL;*/
 	size_t len = 0;
 	ssize_t read;
-	size_t linenumber = 0;
+	unsigned int linenumber = 0;
 	(void)argc;
 
 			printf("we got here\n");
@@ -34,21 +34,22 @@ int main(int argc, char *argv[])
 		/* add line and line number to global_struct */
 		global_struct = create_global_struct(linenumber, line);
 		/* TEST only for global struct members */
-		printf("Full Line: %s\n", global_struct->line);
-		printf("Line Number: %d\n", global_struct->linenumber);
-		printf("Arg 1: %s\n", global_struct->arg_list[0]);
-		printf("Arg 2: %s\n", global_struct->arg_list[1]);
+		/* printf("Full Line: %s\n", global_struct->line); */
+		/* printf("Line Number: %d\n", global_struct->linenumber); */
+		/* printf("Arg 1: %s\n", global_struct->arg_list[0]); */
+		/* printf("Arg 2: %s\n", global_struct->arg_list[1]); */
 		/* get function for opcode */
 		/* op_func = get_op_func(opcodes[0]); */
 		/* store somewhere if push or do something*/
 		if (strcmp(global_struct->arg_list[0], "push") == 0)
 		{
-			printf("we got here: %s\n", global_struct->arg_list[0]);
-			add_dnode(&head, linenumber);
+			add_dnode(&head, global_struct->linenumber);
 		}
+
 		free_global_struct(global_struct);
 
 	}
+	print_stack_t(&head, global_struct->linenumber);
 	free(line);
 	fclose(fp);
 
