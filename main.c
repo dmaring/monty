@@ -12,9 +12,8 @@ int main(int argc, char *argv[])
 	FILE *fp;
 	stack_t *head = NULL;
 	char *line = NULL;
-/*	char **opcodes = NULL;*/
 	size_t len = 0;
-	ssize_t read;
+	ssize_t read = 0;
 	unsigned int linenumber = 0;
 	void (*opfunc)(stack_t **head, unsigned int linenumber) = NULL;
 	(void)argc;
@@ -29,8 +28,8 @@ int main(int argc, char *argv[])
 		/* remove nl from line */
 		rm_nl(&line);
 		/* check if line is blank */
-		if (wordcount(line) == 0)
-			break;
+		/* if (wordcount(line) == 0) */
+		/* 	break; */
 		/* add line and line number to global_struct */
 		global_struct = create_global_struct(linenumber, line);
 		/* TEST only for global struct members */
@@ -44,6 +43,7 @@ int main(int argc, char *argv[])
 		if (opfunc == NULL)
 		{
 			free_all(head, line, fp);
+			free_global_struct(global_struct);
 			/* print error message */
 			exit(1);
 		}

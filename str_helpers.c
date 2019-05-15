@@ -13,14 +13,13 @@ int wordcount(char *str)
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (*str == ' ')
-			str++;
+		if (str[i] == ' ')
+			i++;
 		else
 		{
 			while (str[i] != ' ' && str[i])
 			{
 				i++;
-				str++;
 			}
 			num++;
 		}

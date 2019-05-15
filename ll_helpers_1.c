@@ -10,12 +10,13 @@
 void op_pall(stack_t **h, unsigned int line_number)
 {
 	int i;
+	stack_t *temp = *h;
 	line_number = line_number;
 
-	for (i = 0; *h; i++)
+	for (i = 0; temp; i++)
 	{
-		printf("%d\n", (*h)->n);
-		*h = (*h)->next;
+		printf("%d\n", temp->n);
+		temp = temp->next;
 	}
 }
 
