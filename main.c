@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
 
 	}
 
+	free_stack_t(head);
 	free(line);
 	fclose(fp);
 
