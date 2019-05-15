@@ -28,6 +28,9 @@ int main(int argc, char *argv[])
 		linenumber++;
 		/* remove nl from line */
 		rm_nl(&line);
+		/* check if line is blank */
+		if (wordcount(line) == 0)
+			break;
 		/* add line and line number to global_struct */
 		global_struct = create_global_struct(linenumber, line);
 		/* TEST only for global struct members */
