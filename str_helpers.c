@@ -40,7 +40,7 @@ char **strtow(char *str)
 	char *cpy, **words;
 	int i = 0, j = 0, len = 0, total = 0;
 
-	if (str == 0 || *str == 0)
+	if (str == NULL || *str == 0)
 		return (NULL);
 	total = wordcount(str);
 	if (total == 0)
@@ -50,12 +50,12 @@ char **strtow(char *str)
 		return (NULL);
 	while (*str && i < total)
 	{
-		if (*str == ' ')
+		if (*str == ' ' || *str == '\t')
 			str++;
 		else
 		{
 			cpy = str;
-			while (*str != ' ' && *str)
+			while (*str != ' ' && *str != '\t' && *str)
 			{
 				len++;
 				str++;
