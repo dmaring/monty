@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 	size_t len = 0;
 	ssize_t read;
 	unsigned int linenumber = 0;
+	void (*opfunc)(stack_t **head, unsigned int linenumber);
 	(void)argc;
 
 			printf("we got here\n");
@@ -40,16 +41,17 @@ int main(int argc, char *argv[])
 		/* printf("Arg 2: %s\n", global_struct->arg_list[1]); */
 		/* get function for opcode */
 		/* op_func = get_op_func(opcodes[0]); */
-		/* store somewhere if push or do something*/
-		if (strcmp(global_struct->arg_list[0], "push") == 0)
-		{
-			add_dnode(&head, global_struct->linenumber);
-		}
+		opfunc = get_op_func(global_struct->arg_list[0]);
+		if (opfunc == NULL)
+			/* print error message */
+			exit(1);
+		/*  do something*/
+		opfunc(&head, global_struct->linenumber);
 
 		free_global_struct(global_struct);
 
 	}
-	print_stack_t(&head, global_struct->linenumber);
+
 	free(line);
 	fclose(fp);
 

@@ -7,7 +7,7 @@
 * Return: amount of nodes
 */
 
-void print_stack_t(stack_t **h, unsigned int line_number)
+void op_pall(stack_t **h, unsigned int line_number)
 {
 	int i;
 	line_number = line_number;
@@ -27,7 +27,7 @@ void print_stack_t(stack_t **h, unsigned int line_number)
 * Return: new node, added to list
 */
 
-void add_dnode(stack_t **head, unsigned int line_number)
+void op_push(stack_t **head, unsigned int line_number)
 {
 	int data;
 	stack_t *new = malloc(sizeof(stack_t));

@@ -33,7 +33,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+        void (*f)(stack_t **head, unsigned int line_number);
 } instruction_t;
 
 
@@ -56,7 +56,8 @@ extern global_struct_t *global_struct;
 char **strtow(char *str);
 size_t print_dlistint(const stack_t *h);
 size_t dlistint_len(const stack_t *h);
-void add_dnode(stack_t **head, unsigned int line_number);
+void op_push(stack_t **head, unsigned int line_number);
+void op_pall(stack_t **h, unsigned int line_number);
 int add_dnodeint_end(stack_t **head, const int line_number);
 void free_dlistint(stack_t *head);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
@@ -69,6 +70,6 @@ void free_global_struct(global_struct_t *ptr);
 global_struct_t *create_global_struct(unsigned int linenumber, char *line);
 int _strlen(char *s);
 int wordcount(char *str);
-void print_stack_t(stack_t **h, unsigned int line_number);
+void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber);
 
 #endif
