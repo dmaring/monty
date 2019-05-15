@@ -106,9 +106,12 @@ int add_dnodeint_end(stack_t **head, const int line_number)
 * Return: void
 */
 
-void free_stack_t(stack_t *head)
+void free_all(stack_t *head, char *line, FILE *fp)
 {
 	stack_t *temp;
+
+	free(line);
+	fclose(fp);
 
 	while (head)
 	{

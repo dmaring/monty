@@ -28,7 +28,6 @@ void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber)
 	{
 		if (strcmp(s, instructions[i].opcode) == 0)
 			break;
-
 		i++;
 	}
 

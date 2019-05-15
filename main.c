@@ -19,7 +19,6 @@ int main(int argc, char *argv[])
 	void (*opfunc)(stack_t **head, unsigned int linenumber);
 	(void)argc;
 
-			printf("we got here\n");
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 		exit(EXIT_FAILURE);
@@ -43,17 +42,17 @@ int main(int argc, char *argv[])
 		/* op_func = get_op_func(opcodes[0]); */
 		opfunc = get_op_func(global_struct->arg_list[0]);
 		if (opfunc == NULL)
+		{
+			free_all(head, line, fp);
 			/* print error message */
 			exit(1);
+		}
 		/*  do something*/
 		opfunc(&head, global_struct->linenumber);
 
 		free_global_struct(global_struct);
 
 	}
-
-	free(line);
-	fclose(fp);
-
+	free_all(head, line, fp);
 	exit(EXIT_SUCCESS);
 }
