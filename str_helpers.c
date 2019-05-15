@@ -75,3 +75,34 @@ char **strtow(char *str)
 	}
 	return (words);
 }
+
+/**
+ * rm_nl - remove the last character newline from string
+ * @lineptr: double pointer to string
+ */
+void rm_nl(char **lineptr)
+{
+	char *ptr;
+	int i;
+
+	ptr = *lineptr;
+
+	i = 0;
+	while (ptr[i] != '\n')
+		i++;
+	ptr[i] = '\0';
+}
+
+/**
+ * _strlen - find the length of a string
+ * @s: pointer to string
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+		i++;
+
+	return(i);
+}

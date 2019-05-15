@@ -25,7 +25,7 @@ int (*get_op_func(const char *s))(char *)
 	/** loop through fmatters id member **/
 	while (instructions[i].opcode)
 	{
-		if (*s == *(instructions[i].opcode))
+		if ((strcmp(*s, instructions[i].opcode) == 0)
 			break;
 		i++;
 	}

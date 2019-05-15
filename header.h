@@ -36,6 +36,22 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
+/**
+ * struct global_struct_s -
+ * @linenum: linenumber as integer
+ * @line: pointer to string
+ * @arglist: double pointer to list of line tokenized
+ *
+ * Description: global structure to hold common informatin
+ */
+typedef struct global_struct_s
+{
+        char *line;
+        int linenumber;
+	char **arg_list;
+} global_struct_t;
+
 extern char *global_line;
 char **strtow(char *str);
 size_t print_dlistint(const stack_t *h);
@@ -46,7 +62,11 @@ void free_dlistint(stack_t *head);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
 int sum_dlistint(stack_t *head);
 stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n);
-
+char **strtow(char *str);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
+void rm_nl(char **lineptr);
+void free_global_struct(global_struct_t *ptr);
+global_struct_t *create_global_struct(int linenumber, char *line);
+int _strlen(char *s);
 
 #endif
