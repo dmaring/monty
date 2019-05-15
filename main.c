@@ -12,12 +12,12 @@ int main(int argc, char *argv[])
 	FILE *fp;
 	stack_t **head = NULL;
 	char *line = NULL;
+	char **test = NULL;
 	char **opcodes = NULL;
 	size_t len = 0;
 	ssize_t read;
 	size_t linenumber = 0;
 
-	global_struct = malloc(sizeof(instruction_t));
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 		exit(EXIT_FAILURE);
@@ -25,21 +25,24 @@ int main(int argc, char *argv[])
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		linenumber++;
-		printf("Readline: %s\n", line);
-		/* add line to global_struct */
-		/* add line number to global struct */
-		/* get function for opcode *//
+		/* remove nl from line */
+		rm_nl(&line);
+		/* add line and line number to global_struct */
+		global_struct = create_global_struct(linenumber, line);
+		/* TEST only for global struct members */
+		printf("Readline: %s\n", global_struct->line);
+		printf("Linenumber: %d\n", global_struct->linenumber);
+		test = (*global_struct).arg_list;
+		printf("Arg 1: %s\n", test[0]);
+		/* get function for opcode */
 		/* op_func = get_op_func(opcodes[0]); */
 		/* store somewhere if push or do something*/
-		if (strncmp(line, "push", 4) == 0)
+		if (strncmp(global_struct->line, "push", 4) == 0)
 			printf("Push found!");
+		free_global_struct(global_struct);
 		free(line);
 	}
-	free(global_struct);
 	fclose(fp);
-
-
-
 
 	exit(EXIT_SUCCESS);
 }
