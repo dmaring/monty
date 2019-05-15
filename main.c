@@ -39,10 +39,11 @@ int main(int argc, char *argv[])
 		/* op_func = get_op_func(opcodes[0]); */
 		/* store somewhere if push or do something*/
 		if (strncmp(global_struct->line, "push", 4) == 0)
-			printf("Push found!");
+			printf("Push found!\n");
 		free_global_struct(global_struct);
-		free(line);
+
 	}
+	free(line);
 	fclose(fp);
 
 	exit(EXIT_SUCCESS);
