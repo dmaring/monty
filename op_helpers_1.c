@@ -15,14 +15,19 @@ void op_push(stack_t **head, unsigned int line_number)
 	line_number = line_number;
 
 	if (!new)
-		return;
+	{
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
 	if (global_struct->arg_list[1] && _isnum(global_struct->arg_list[1][0]))
 		data = atoi(global_struct->arg_list[1]);
 	else
 	{
-		dprintf(STDERR_FILENO, PINT_FAIL, line_number);
+		dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+		free(new);
 		free_all(1);
-		exit(EXIT_SUCCESS);
+		exit(EXIT_FAILURE);
 	}
 
 	new->n = data;

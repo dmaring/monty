@@ -34,32 +34,3 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 
 	return (new);
 }
-
-/**
-* free_all - free elements in the list
-* @head: pointer to nodes in the list
-* @line: input line
-* @fp: file pointer to open file
-*
-* Return: void
-*/
-
-void free_all(int flag)
-{
-	stack_t *temp;
-
-	while (global_struct->head)
-	{
-		temp = global_struct->head->next;
-		free(global_struct->head);
-		global_struct->head = temp;
-	}
-	if (flag == 1)
-	{
-
-		if (global_struct->line)
-			free(global_struct->line);
-		if (global_struct->fp)
-			fclose(global_struct->fp);
-	}
-}

@@ -28,7 +28,6 @@ global_struct_t *create_global_struct(unsigned int linenumber, char *line,
 	}
 	for (i = 0; i < ll; i++)
 		ptr->line[i] = line[i];
-
 	ptr->linenumber = linenumber;
 
 	ptr->arg_list = strtow(line);
@@ -38,27 +37,4 @@ global_struct_t *create_global_struct(unsigned int linenumber, char *line,
 	ptr->head = head;
 
 	return (ptr);
-}
-
-
-/**
- * free_global_struct - function that frees global struct
- * @ptr: pointer to global struct instance
- *
- */
-void free_global_struct(global_struct_t *ptr)
-{
-	int i = 0;
-
-	if (ptr)
-	{
-		free(ptr->line);
-		while (ptr->arg_list[i])
-		{
-			free(ptr->arg_list[i]);
-			i++;
-		}
-		free(ptr->arg_list);
-		free(ptr);
-	}
 }

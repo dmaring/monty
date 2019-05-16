@@ -36,21 +36,29 @@ int main(int argc, char *argv[])
 		rm_nl(&line);
 		/* check if line is blank */
 		if (wordcount(line) == 0)
-			break;
+		{
+			free(line);
+			fclose(fp);
+			dprintf(STDERR_FILENO, USAGE);
+			exit(EXIT_FAILURE);
+		}
 		/* add line and line number to global_struct */
 		global_struct = create_global_struct(linenumber,
 				 line, fp, head);
+		free(line);
 		opfunc = get_op_func(global_struct->arg_list[0]);
 		if (opfunc == NULL)
 		{
+			dprintf(STDERR_FILENO, UNKNOWN,
+				global_struct->linenumber,
+				global_struct->arg_list[0]);
 			free_all(1);
-			free_global_struct(global_struct);
-			/* print error message */
 			exit(EXIT_FAILURE);
 		}
 		opfunc(&head, global_struct->linenumber);
-		free_global_struct(global_struct);
+		free_all(0);
 	}
-	free_all(1);
+	fclose(fp);
+	fp = NULL;
 	exit(EXIT_SUCCESS);
 }
