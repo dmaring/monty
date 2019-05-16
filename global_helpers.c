@@ -1,8 +1,8 @@
 #include "header.h"
 
 /**
- * new_global_struct - function that creates a new dog
- * @linenum: line number of string
+ * create_global_struct - function that creates a new dog
+ * @linenumber: line number of string
  * @line: pointer to line string
  *
  * Return: pointer to new global_struct
@@ -36,7 +36,7 @@ global_struct_t *create_global_struct(unsigned int linenumber, char *line)
 
 /**
  * free_global_struct - function that frees global struct
- * @d: pointer to global struct instance
+ * @ptr: pointer to global struct instance
  *
  */
 void free_global_struct(global_struct_t *ptr)
