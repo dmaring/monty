@@ -95,6 +95,8 @@ void rm_nl(char **lineptr)
 /**
  * _strlen - find the length of a string
  * @s: pointer to string
+ *
+ * Return: length of string as int
  */
 int _strlen(char *s)
 {
@@ -103,5 +105,5 @@ int _strlen(char *s)
 	while (s[i])
 		i++;
 
-	return(i);
+	return (i);
 }
