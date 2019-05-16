@@ -35,14 +35,13 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 	return (new);
 }
 
-/*
-	return (line_number);
-}
-*/
 /**
-* free_stack_t - free elements in the list
+* free_all - free elements in the list
 * @head: pointer to nodes in the list
-wap* Return: void
+* @line: input line
+* @fp: file pointer to open file
+*
+* Return: void
 */
 
 void free_all(stack_t *head, char *line, FILE *fp)
