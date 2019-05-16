@@ -1,4 +1,5 @@
 #include "monty.h"
+
 global_struct_t *global_struct = NULL;
 
 /**
@@ -28,9 +29,13 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, FILE_ERROR, argv[1]);
 		exit(EXIT_FAILURE);
 	}
+	global_struct = create_global_struct(linenumber,
+			 line, fp, head);
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
+		global_struct->line = line;
+		global_struct->fp = fp;
 		linenumber++;
 		/* remove nl from line */
 		rm_nl(&line);
@@ -43,8 +48,6 @@ int main(int argc, char *argv[])
 			exit(EXIT_FAILURE);
 		}
 		/* add line and line number to global_struct */
-		global_struct = create_global_struct(linenumber,
-				 line, fp, head);
 
 		opfunc = get_op_func(global_struct->arg_list[0]);
 		if (opfunc == NULL)
