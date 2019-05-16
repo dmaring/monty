@@ -76,13 +76,13 @@ stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
 	return (NULL);
 }
 
-/*add_dnodeint - add a node to the beginning of the list with info
-* @head: double pointer to the nodes in the list
-* @n: number to fill into new node
-*
-* Return: new node, added to list
-*/
-
+/**
+ * add_dnodeint - add a node at head
+ * @head: double pointer to head of list
+ * @n: number for new node member n
+ *
+ * Return: new node address
+ */
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
 	stack_t *new = malloc(sizeof(stack_t));
@@ -135,8 +135,6 @@ void delete_dnodeint_at_index(stack_t **head, unsigned int index)
 	temp->next = curr->next;
 	curr->next->prev = temp;
 	free(curr);
-
-	return;
 }
 
 /**
