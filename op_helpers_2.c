@@ -28,7 +28,7 @@ void op_pop(stack_t **head, unsigned int line_number)
 void op_mul(stack_t **head, unsigned int line_number)
 {
         stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
-        int sum = 0;
+        int prod = 0;
 
         if (dlistint_len(*head) < 2)
         {
