@@ -44,17 +44,22 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 * Return: void
 */
 
-void free_all(stack_t *head, char *line, FILE *fp)
+void free_all(int flag)
 {
 	stack_t *temp;
 
-	free(line);
-	fclose(fp);
-
-	while (head)
+	while (global_struct->head)
 	{
-		temp = head->next;
-		free(head);
-		head = temp;
+		temp = global_struct->head->next;
+		free(global_struct->head);
+		global_struct->head = temp;
+	}
+	if (flag == 1)
+	{
+
+		if (global_struct->line)
+			free(global_struct->line);
+		if (global_struct->fp)
+			fclose(global_struct->fp);
 	}
 }

@@ -16,11 +16,18 @@ int main(int argc, char *argv[])
 	ssize_t read = 0;
 	unsigned int linenumber = 0;
 	void (*opfunc)(stack_t **head, unsigned int linenumber) = NULL;
-	(void)argc;
 
+	if (argc != 2)
+	{
+		dprintf(STDERR_FILENO, USAGE);
+		exit(EXIT_FAILURE);
+	}
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
+	{
+		dprintf(STDERR_FILENO, FILE_ERROR, argv[1]);
 		exit(EXIT_FAILURE);
+	}
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
@@ -31,22 +38,19 @@ int main(int argc, char *argv[])
 		if (wordcount(line) == 0)
 			break;
 		/* add line and line number to global_struct */
-		global_struct = create_global_struct(linenumber, line);
+		global_struct = create_global_struct(linenumber,
+				 line, fp, head);
 		opfunc = get_op_func(global_struct->arg_list[0]);
 		if (opfunc == NULL)
 		{
-			free_all(head, line, fp);
+			free_all(1);
 			free_global_struct(global_struct);
 			/* print error message */
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
-		/*  do something*/
 		opfunc(&head, global_struct->linenumber);
-
 		free_global_struct(global_struct);
-
 	}
-	free_all(head, line, fp);
-
+	free_all(1);
 	exit(EXIT_SUCCESS);
 }

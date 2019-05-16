@@ -50,10 +50,24 @@ typedef struct global_struct_s
         char *line;
         unsigned int linenumber;
 	char **arg_list;
+	FILE *fp;
+	stack_t *head;
 } global_struct_t;
 
 extern global_struct_t *global_struct;
 
+#define USAGE "USAGE: monty file\n"
+#define FILE_ERROR "Error: Can't open file %s\n"
+#define UNKNOWN "L%u: unknown instruction %s\n"
+#define MALLOC_FAIL "Error: malloc failed\n"
+#define PUSH_FAIL "L%u: usage: push integer\n"
+#define PINT_FAIL "L%u: can't pint, stack empty\n"
+#define POP_FAIL "L%u: can't pop an empty stack\n"
+#define ADD_FAIL "L%u: can't add, stack too short\n"
+#define SUB_FAIL "L%u: can't sub, stack too short\n"
+#define MUL_FAIL "L%u: can't mul, stack too short\n"
+#define DIV_FAIL "L%u: can't div, stack too short\n"
+#define MOD_FAIL "L%u: can't mod, stack too short\n"
 
 /* main_helpers.c */
 void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber);
@@ -69,12 +83,13 @@ int _atoi(int *num, char *s);
 int _isnum(char c);
 
 /* global_helpers.c */
-global_struct_t *create_global_struct(unsigned int linenumber, char *line);
+global_struct_t *create_global_struct(unsigned int linenumber, char *line,
+					FILE *fp, stack_t *head);
 void free_global_struct(global_struct_t *ptr);
 
 /* ll_helpers_1.c */
 stack_t *add_dnodeint_end(stack_t **head, const int n);
-void free_all(stack_t *head, char *line, FILE *fp);
+void free_all(int flag);
 
 /* ll_helpers_2.c */
 stack_t *add_dnodeint(stack_t **head, const int n);

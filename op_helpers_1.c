@@ -20,11 +20,8 @@ void op_push(stack_t **head, unsigned int line_number)
 		data = atoi(global_struct->arg_list[1]);
 	else
 	{
-		/* throw error */
-		fprintf(stderr,
-			"L%d: usage: push integer\n",
-			global_struct->linenumber);
-		free(new);
+		dprintf(STDERR_FILENO, PINT_FAIL, line_number);
+		free_all(1);
 		exit(EXIT_SUCCESS);
 	}
 
@@ -74,8 +71,9 @@ void op_pop(stack_t **head, unsigned int line_number)
 
 	if (!temp)
 	{
-		line_number = line_number;
-		/* error message, pop fail */
+		dprintf(STDERR_FILENO, POP_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 	delete_dnodeint_at_index(temp, 0);
 }
@@ -93,8 +91,9 @@ void op_pint(stack_t **head, unsigned int line_number)
 
 	if (!head)
 	{
-		line_number = line_number;
-		/*error message, pint fail */
+		dprintf(STDERR_FILENO, PINT_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", temp->n);
 }
