@@ -13,6 +13,7 @@ int _isnum(char c)
 }
 /**
  * _atoi - convert a string of numbers to an integer
+ * @num: pointer to num variable
  * @s: input string
  *
  * Return: integer equivalent to input string
