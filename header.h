@@ -71,5 +71,6 @@ global_struct_t *create_global_struct(unsigned int linenumber, char *line);
 int _strlen(char *s);
 int wordcount(char *str);
 void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber);
+int _isnum(char c);
 
 #endif

@@ -30,13 +30,23 @@ void op_pall(stack_t **h, unsigned int line_number)
 
 void op_push(stack_t **head, unsigned int line_number)
 {
-	int data;
+	int data = 0;
 	stack_t *new = malloc(sizeof(stack_t));
 	line_number = line_number;
 
 	if (!new)
 		return;
-	data = atoi(global_struct->arg_list[1]);
+	if (global_struct->arg_list[1] && _isnum(global_struct->arg_list[1][0]))
+		data = atoi(global_struct->arg_list[1]);
+	else
+	{
+		/* throw error */
+		fprintf(stderr,
+			"L%d: usage: push integer\n",
+			global_struct->linenumber);
+		free(new);
+		exit(EXIT_SUCCESS);
+	}
 
 	new->n = data;
 	new->prev = NULL;
