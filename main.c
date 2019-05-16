@@ -32,13 +32,6 @@ int main(int argc, char *argv[])
 			break;
 		/* add line and line number to global_struct */
 		global_struct = create_global_struct(linenumber, line);
-		/* TEST only for global struct members */
-		/* printf("Full Line: %s\n", global_struct->line); */
-		/* printf("Line Number: %d\n", global_struct->linenumber); */
-		/* printf("Arg 1: %s\n", global_struct->arg_list[0]); */
-		/* printf("Arg 2: %s\n", global_struct->arg_list[1]); */
-		/* get function for opcode */
-		/* op_func = get_op_func(opcodes[0]); */
 		opfunc = get_op_func(global_struct->arg_list[0]);
 		if (opfunc == NULL)
 		{
