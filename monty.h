@@ -53,47 +53,43 @@ typedef struct global_struct_s
 } global_struct_t;
 
 extern global_struct_t *global_struct;
-
-/* main_helpers.c */
-void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber);
-
-/* str_helpers.c */
-int _strlen(char *s);
-void rm_nl(char **lineptr);
-int wordcount(char *str);
 char **strtow(char *str);
-
-/* str_helpers_2.c */
-int _atoi(int *num, char *s);
+size_t print_dlistint(const stack_t *h);
+size_t dlistint_len(const stack_t *h);
+void op_push(stack_t **head, unsigned int line_number);
+void op_pall(stack_t **h, unsigned int line_number);
+void free_all(stack_t *head, char *line, FILE *fp);
+int sum_dlistint(stack_t *head);
+char **strtow(char *str);
+void rm_nl(char **lineptr);
+void free_global_struct(global_struct_t *ptr);
+global_struct_t *create_global_struct(unsigned int linenumber, char *line);
+int _strlen(char *s);
+int wordcount(char *str);
+void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber);
 int _isnum(char c);
 
-/* global_helpers.c */
-global_struct_t *create_global_struct(unsigned int linenumber, char *line);
-void free_global_struct(global_struct_t *ptr);
+size_t dlistint_len(const stack_t *h);
 
 /* ll_helpers_1.c */
 stack_t *add_dnodeint_end(stack_t **head, const int n);
-void free_all(stack_t *head, char *line, FILE *fp);
 
 /* ll_helpers_2.c */
+
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
 stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n);
 void delete_dnodeint_at_index(stack_t **head, unsigned int index);
-size_t dlistint_len(const stack_t *h);
 
 /* op_helpers_1 */
-void op_push(stack_t **head, unsigned int line_number);
-void op_pall(stack_t **h, unsigned int line_number);
-void op_pop(stack_t **head, unsigned int line_number);
+void op_add(stack_t **head, unsigned int line_number);
 void op_pint(stack_t **head, unsigned int line_number);
 void op_nop(stack_t **head, unsigned int line_number);
+void op_sub(stack_t **head, unsigned int line_number);
+void op_div(stack_t **head, unsigned int line_number);
 
 /* op_helpers_2 */
-void op_add(stack_t **head, unsigned int line_number);
-void op_div(stack_t **head, unsigned int line_number);
-void op_sub(stack_t **head, unsigned int line_number);
-void op_mod(stack_t **head, unsigned int line_number);
-void op_mul(stack_t **head, unsigned int line_number);
+
+void op_pop(stack_t **head, unsigned int line_number);
 
 #endif
