@@ -68,46 +68,34 @@ void op_push(stack_t **head, unsigned int line_number)
 *
 * Return: new node on success, NULL on failure
 */
-/*
-int add_dnodeint_end(stack_t **head, const int line_number)
-{
-	int i;
 
+stack_t *add_dnodeint_end(stack_t **head, const int n)
+{
 	stack_t *temp;
 	stack_t *new = malloc(sizeof(stack_t));
-*/
-/*	int num;*/
-/*
-	(void)head;
 
-	printf("we got here\n");
-
-	for (i = 0; arg_list[i]; i++)
-		printf("arg = %s\n", arg_list[i]);
-
-*/
-/*	num = atoi(arg);*/
-
-/*
 	if (!head || !new)
-		return (0);
+		return (NULL);
 
 	temp = *head;
 
-	new->n = num;
+	new->n = n;
 	new->next = NULL;
 
 	if (!*head)
 	{
 		new->prev = NULL;
 		*head = new;
-		return (line_number);
+		return (new);
 	}
 	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
 	new->prev = temp;
-*/
+
+	return (new);
+}
+
 /*
 	return (line_number);
 }
@@ -115,8 +103,7 @@ int add_dnodeint_end(stack_t **head, const int line_number)
 /**
 * free_stack_t - free elements in the list
 * @head: pointer to nodes in the list
-*
-* Return: void
+wap* Return: void
 */
 
 void free_all(stack_t *head, char *line, FILE *fp)
