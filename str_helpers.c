@@ -1,4 +1,4 @@
-#include "header.h"
+#include "monty.h"
 
 /**
  * wordcount - finds words within string

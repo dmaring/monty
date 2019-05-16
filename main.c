@@ -1,4 +1,4 @@
-#include "header.h"
+#include "monty.h"
 global_struct_t *global_struct = NULL;
 
 /**

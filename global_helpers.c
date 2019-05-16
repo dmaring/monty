@@ -1,4 +1,4 @@
-#include "header.h"
+#include "monty.h"
 
 /**
  * create_global_struct - function that creates a new dog
