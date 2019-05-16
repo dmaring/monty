@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 		/* add line and line number to global_struct */
 		global_struct = create_global_struct(linenumber,
 				 line, fp, head);
-		free(line);
+
 		opfunc = get_op_func(global_struct->arg_list[0]);
 		if (opfunc == NULL)
 		{

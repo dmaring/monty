@@ -10,24 +10,38 @@
 
 void free_all(int flag)
 {
-	stack_t *temp;
-
-	while (global_struct->head)
-	{
-		temp = global_struct->head->next;
-		free(global_struct->head);
-		global_struct->head = temp;
-	}
-	free_global_struct(global_struct);
+	stack_t *temp = NULL;
+	int i = 0;
 
 	if (flag == 1)
 	{
+		while (global_struct->head)
+		{
+			temp = global_struct->head->next;
+			free(global_struct->head);
+			global_struct->head = temp;
+		}
+		global_struct->head = NULL;
+
 		if (global_struct->fp)
 		{
 			fclose(global_struct->fp);
 			global_struct->fp = NULL;
 		}
 	}
+	if (global_struct->line && global_struct->arg_list[i])
+	{
+		while (global_struct->arg_list[i])
+		{
+			free(global_struct->arg_list[i]);
+			i++;
+		}
+		global_struct->arg_list = NULL;
+		free(global_struct->line);
+		global_struct->line = NULL;
+
+	}
+
 }
 
 /**
@@ -46,7 +60,13 @@ void free_global_struct(global_struct_t *ptr)
 			free(ptr->arg_list[i]);
 			i++;
 		}
+		if (ptr->line)
+		{
+			free(ptr->line);
+			ptr->line = NULL;
+		}
 		free(ptr->arg_list);
+		ptr->arg_list = NULL;
 		free(ptr);
 	}
 	ptr = NULL;
