@@ -99,7 +99,7 @@ void op_pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp = *head;
 
-	if (!head)
+	if (!*head)
 	{
 		dprintf(STDERR_FILENO, PINT_FAIL, line_number);
 		free_all();
