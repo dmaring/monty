@@ -79,7 +79,7 @@ void op_pop(stack_t **head, unsigned int line_number)
 {
 	stack_t **temp = head;
 
-	if (!temp)
+	if (!*temp)
 	{
 		dprintf(STDERR_FILENO, POP_FAIL, line_number);
 		free_all();
