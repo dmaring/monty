@@ -59,7 +59,8 @@ stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
 	for (i = 0; temp && temp->next && i <= idx; i++)
 	{
 		temp = temp->next;
-
+		if (!temp)
+			return (NULL);
 		if (i == idx - 1)
 		{
 			new->next = temp->next;
@@ -121,8 +122,8 @@ void delete_dnodeint_at_index(stack_t **head, unsigned int index)
 
 	if (index == 0)
 	{
-		*head = (*head)->next;
 		(*head)->prev = NULL;
+		*head = (*head)->next;
 		free(temp);
 		return;
 	}

@@ -113,6 +113,6 @@ void op_mod(stack_t **head, unsigned int line_number);
 void op_mul(stack_t **head, unsigned int line_number);
 
 /*op_helpers_3 */
-void op_swap(stack_t **head, unsigned int line_number);
+/*void op_swap(stack_t **head, unsigned int line_number);*/
 
 #endif
