@@ -26,54 +26,6 @@ int wordcount(char *str)
 }
 
 /**
-* strtow - convert input str into a double string
-* @str: string to separate
-*
-* Return: double pointer to the words on success, null if fail
-*/
-
-char **strtow(char *str)
-{
-	char *cpy = NULL, **words = NULL;
-	int i = 0, j = 0, len = 0, total = 0;
-
-	if (str == NULL || *str == 0)
-		return (NULL);
-	total = wordcount(str);
-	if (total == 0)
-		return (NULL);
-	words = malloc(sizeof(char *) * (total + 1));
-	if (words == NULL)
-		return (NULL);
-	while (*str && i < total)
-	{
-		if (*str == ' ' || *str == '\t')
-			str++;
-		else
-		{
-			cpy = str;
-			while (*str != ' ' && *str != '\t' && *str)
-			{
-				len++;
-				str++;
-			}
-			words[i] = malloc(sizeof(char) * (len + 1));
-			while (*cpy != ' ' && *cpy)
-			{
-				words[i][j] = *cpy;
-				cpy++;
-				j++;
-			}
-			words[i][j] = '\0';
-			i++;
-			j = 0;
-			len = 0;
-		}
-	}
-	free(str);
-	return (words);
-}
-/**
  * rm_nl - remove the last character newline from string
  * @lineptr: double pointer to string
  */
@@ -114,7 +66,7 @@ int _strlen(char *s)
 
 void strtok_list(char *line)
 {
-	global_struct.arg = strtok(line, " \t");
+	global_struct.arg = strtok(line, " \t\n");
 /*
 	if (global_struct.arg)
 	{
@@ -129,4 +81,3 @@ void strtok_list(char *line)
 	}
 */
 }
-

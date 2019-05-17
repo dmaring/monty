@@ -36,21 +36,22 @@ int main(int argc, char *argv[])
 /*	global_struct = create_global_struct(linenumber,
 			 line, fp, head);
 */
-	while ((read = getline(&global_struct.line, &len, global_struct.fp)) != -1)
+	while ((read = getline(&global_struct.line,
+			       &len, global_struct.fp)) != -1)
 	{
 		rm_nl(&global_struct.line);
 		global_struct.linenumber++;
-		if (wordcount(global_struct.line) == 0)
-		{
-			free_all();
-			dprintf(STDERR_FILENO, USAGE);
-			exit(EXIT_FAILURE);
-		}
+		/* if (wordcount(global_struct.line) == 0) */
+		/* { */
+		/* 	free_all(); */
+		/* 	dprintf(STDERR_FILENO, USAGE); */
+		/* 	exit(EXIT_FAILURE); */
+		/* } */
 		strtok_list(global_struct.line);
 		if (!global_struct.arg)
 			continue;
 		opfunc = get_op_func(global_struct.arg);
-		
+
 		if (opfunc == NULL)
 		{
 			dprintf(STDERR_FILENO, UNKNOWN,

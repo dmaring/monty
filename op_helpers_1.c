@@ -12,23 +12,23 @@ void op_push(stack_t **head, unsigned int line_number)
 {
 	int data = 0;
 	stack_t *new = malloc(sizeof(stack_t));
-	char *num = strtok(NULL, " \t");
+	char *num = strtok(NULL, " \t\n");
 
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, MALLOC_FAIL);
 		free_all();
 		exit(EXIT_FAILURE);
-	}	
-	if(num[0] == '-')
+	}
+	if (num && num[0] == '-')
 		data++;
 
-	while(num[data])
+	while(num && num[data])
 		if (!isdigit(num[data++]))
 		{
 			data = -1;
 			break;
-		}	
+		}
 	if (!num || data == -1)
 	{
 		dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
