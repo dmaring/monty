@@ -46,7 +46,6 @@ void op_sub(stack_t **head, unsigned int line_number)
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
 	int sub = 0;
 
-	printf("we here\n");
 	if (dlistint_len(*head) < 2)
 	{
 		dprintf(STDERR_FILENO, SUB_FAIL, line_number);
@@ -56,7 +55,7 @@ void op_sub(stack_t **head, unsigned int line_number)
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
 
-	sub = node_0->n - node_1->n;
+	sub = node_1->n - node_0->n;
 	delete_dnodeint_at_index(head, 0);
 	delete_dnodeint_at_index(head, 0);
 
