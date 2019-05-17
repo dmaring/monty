@@ -12,34 +12,39 @@ void op_push(stack_t **head, unsigned int line_number)
 {
 	int data = 0;
 	stack_t *new = malloc(sizeof(stack_t));
+	char *num = strtok(NULL, " \t");
 
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, MALLOC_FAIL);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
-	}
-	if (global_struct->arg_list[1] && _isnum(global_struct->arg_list[1][0]))
-		data = atoi(global_struct->arg_list[1]);
-	else
+	}	
+	if(num[0] == '-')
+		data++;
+
+	while(num[data])
+		if (!isdigit(num[data++]))
+		{
+			data = -1;
+			break;
+		}	
+	if (!num || data == -1)
 	{
 		dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
-		free(new);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
-
+	data = atoi(num);
 	new->n = data;
 	new->prev = NULL;
 	new->next = NULL;
-
 	if (*head)
 	{
 		(*head)->prev = new;
 		new->next = *head;
 	}
 	*head = new;
-
 }
 /**
 * op_pall - print the linked list
@@ -77,7 +82,7 @@ void op_pop(stack_t **head, unsigned int line_number)
 	if (!temp)
 	{
 		dprintf(STDERR_FILENO, POP_FAIL, line_number);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	delete_dnodeint_at_index(temp, 0);
@@ -97,7 +102,7 @@ void op_pint(stack_t **head, unsigned int line_number)
 	if (!head)
 	{
 		dprintf(STDERR_FILENO, PINT_FAIL, line_number);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", temp->n);

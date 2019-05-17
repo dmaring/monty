@@ -15,7 +15,7 @@ void op_add(stack_t **head, unsigned int line_number)
 	if (dlistint_len(*head) < 2)
 	{
 		dprintf(STDERR_FILENO, ADD_FAIL, line_number);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
@@ -29,7 +29,7 @@ void op_add(stack_t **head, unsigned int line_number)
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, MALLOC_FAIL);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -49,7 +49,7 @@ void op_sub(stack_t **head, unsigned int line_number)
 	if (dlistint_len(*head) < 2)
 	{
 		dprintf(STDERR_FILENO, SUB_FAIL, line_number);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
@@ -63,7 +63,7 @@ void op_sub(stack_t **head, unsigned int line_number)
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, MALLOC_FAIL);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -83,7 +83,7 @@ void op_mul(stack_t **head, unsigned int line_number)
 	if (dlistint_len(*head) < 2)
 	{
 		dprintf(STDERR_FILENO, MUL_FAIL, line_number);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
@@ -97,7 +97,7 @@ void op_mul(stack_t **head, unsigned int line_number)
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, MALLOC_FAIL);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -117,12 +117,12 @@ void op_div(stack_t **head, unsigned int line_number)
 	if (dlistint_len(*head) < 2)
 	{
 		dprintf(STDERR_FILENO, DIV_FAIL, line_number);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	if (node_0->n == 0)
 	{
-		free_all(0);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
@@ -136,7 +136,7 @@ void op_div(stack_t **head, unsigned int line_number)
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, MALLOC_FAIL);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -157,7 +157,7 @@ void op_mod(stack_t **head, unsigned int line_number)
 	if (dlistint_len(*head) < 2)
 	{
 		dprintf(STDERR_FILENO, MOD_FAIL, line_number);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
@@ -171,7 +171,7 @@ void op_mod(stack_t **head, unsigned int line_number)
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, MALLOC_FAIL);
-		free_all(1);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 }

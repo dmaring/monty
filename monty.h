@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -49,12 +50,12 @@ typedef struct global_struct_s
 {
         char *line;
         unsigned int linenumber;
-	char **arg_list;
+	char *arg;
 	FILE *fp;
 	stack_t *head;
 } global_struct_t;
 
-extern global_struct_t *global_struct;
+extern global_struct_t global_struct;
 
 #define USAGE "USAGE: monty file\n"
 #define FILE_ERROR "Error: Can't open file %s\n"
@@ -77,7 +78,7 @@ int _strlen(char *s);
 void rm_nl(char **lineptr);
 int wordcount(char *str);
 char **strtow(char *str);
-
+void strtok_list(char *line);
 /* str_helpers_2.c */
 int _atoi(int *num, char *s);
 int _isnum(char c);
@@ -88,9 +89,8 @@ global_struct_t *create_global_struct(unsigned int linenumber, char *line,
 void free_global_struct(global_struct_t *ptr);
 
 /* ll_helpers_1.c */
+void free_all(void);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
-void free_all(int flag);
-
 /* ll_helpers_2.c */
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);

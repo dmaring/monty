@@ -1,6 +1,6 @@
 #include "monty.h"
 
-global_struct_t *global_struct = NULL;
+global_struct_t global_struct;
 
 /**
  * main - main function for Monty interpreter
@@ -10,58 +10,58 @@ global_struct_t *global_struct = NULL;
  */
 int main(int argc, char *argv[])
 {
-	FILE *fp;
+/*i	FILE *fp;
 	stack_t *head = NULL;
 	char *line = NULL;
+*/
 	size_t len = 0;
-	ssize_t read = 0;
-	unsigned int linenumber = 0;
-	void (*opfunc)(stack_t **head, unsigned int linenumber) = NULL;
 
+
+	ssize_t read = 0;
+/*
+	unsigned int linenumber = 1;
+*/
+	void (*opfunc)(stack_t **head, unsigned int linenumber) = NULL;
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, USAGE);
 		exit(EXIT_FAILURE);
 	}
-	fp = fopen(argv[1], "r");
-	if (fp == NULL)
+	global_struct.fp = fopen(argv[1], "r");
+	if (global_struct.fp == NULL)
 	{
 		dprintf(STDERR_FILENO, FILE_ERROR, argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	global_struct = create_global_struct(linenumber,
+/*	global_struct = create_global_struct(linenumber,
 			 line, fp, head);
-
-	while ((read = getline(&line, &len, fp)) != -1)
+*/
+	while ((read = getline(&global_struct.line, &len, global_struct.fp)) != -1)
 	{
-		global_struct->line = line;
-		global_struct->fp = fp;
-		linenumber++;
-		/* remove nl from line */
-		rm_nl(&line);
-		/* check if line is blank */
-		if (wordcount(line) == 0)
+		rm_nl(&global_struct.line);
+		global_struct.linenumber++;
+		if (wordcount(global_struct.line) == 0)
 		{
-			free(line);
-			fclose(fp);
+			free_all();
 			dprintf(STDERR_FILENO, USAGE);
 			exit(EXIT_FAILURE);
 		}
-		/* add line and line number to global_struct */
-
-		opfunc = get_op_func(global_struct->arg_list[0]);
+		strtok_list(global_struct.line);
+		if (!global_struct.arg)
+			continue;
+		opfunc = get_op_func(global_struct.arg);
+		
 		if (opfunc == NULL)
 		{
 			dprintf(STDERR_FILENO, UNKNOWN,
-				global_struct->linenumber,
-				global_struct->arg_list[0]);
-			free_all(1);
+				global_struct.linenumber,
+				global_struct.arg);
+			free_all();
 			exit(EXIT_FAILURE);
 		}
-		opfunc(&head, global_struct->linenumber);
-		free_all(0);
+
+		opfunc(&global_struct.head, global_struct.linenumber);
 	}
-	fclose(fp);
-	fp = NULL;
+	free_all();
 	exit(EXIT_SUCCESS);
 }
