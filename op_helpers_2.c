@@ -128,7 +128,7 @@ void op_div(stack_t **head, unsigned int line_number)
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
 
-	div = node_0->n / node_1->n;
+	div = node_1->n / node_0->n;
 	delete_dnodeint_at_index(head, 0);
 	delete_dnodeint_at_index(head, 0);
 
@@ -163,7 +163,7 @@ void op_mod(stack_t **head, unsigned int line_number)
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
 
-	mod = node_0->n % node_1->n;
+	mod = node_1->n % node_0->n;
 	delete_dnodeint_at_index(head, 0);
 	delete_dnodeint_at_index(head, 0);
 
