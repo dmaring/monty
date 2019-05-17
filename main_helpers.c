@@ -13,8 +13,8 @@ void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber)
 		{"push", op_push},
 		{"pall", op_pall},
 		{"pint", op_pint},
+		{"swap", op_swap},
 		{"pop", op_pop},
-		/* {"swap", op_swap}, */
 		{"add", op_add},
 		{"nop", op_nop},
 		{NULL, NULL}
