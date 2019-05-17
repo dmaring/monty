@@ -1,18 +1,17 @@
 #include "monty.h"
 
 /**
-* add_dnodeint - add a node to the beginning of the list with info
+* op_push - add a node to the head of the stack
 * @head: double pointer to the nodes in the list
-* @n: number to fill into new node
+* @line_number: line read
 *
-* Return: new node, added to list
+* Return: void
 */
 
 void op_push(stack_t **head, unsigned int line_number)
 {
 	int data = 0;
 	stack_t *new = malloc(sizeof(stack_t));
-	line_number = line_number;
 
 	if (!new)
 	{
@@ -43,18 +42,19 @@ void op_push(stack_t **head, unsigned int line_number)
 
 }
 /**
-* print_stack_t - print the linked list
-* @h: pointer to the nodes of the list
+* op_pall - print the linked list
+* @h: pointer to the first element in the stack
+* @line_number: pointer to the nodes of the list
 *
-* Return: amount of nodes
+* Return: void
 */
 
 void op_pall(stack_t **h, unsigned int line_number)
 {
 	int i;
 	stack_t *temp = *h;
-	line_number = line_number;
 
+	line_number = line_number;
 	for (i = 0; temp; i++)
 	{
 		printf("%d\n", temp->n);

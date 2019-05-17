@@ -1,11 +1,12 @@
 #include "monty.h"
 
 /**
+* op_add - find addition of first and second element in the stack
+* @head: pointer to first element in the stack
+* @line_number: line read
 *
-*
-*
+* Return: void
 */
-
 void op_add(stack_t **head, unsigned int line_number)
 {
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
@@ -13,8 +14,9 @@ void op_add(stack_t **head, unsigned int line_number)
 
 	if (dlistint_len(*head) < 2)
 	{
-		line_number = line_number;
-		/*error message, not enough elements*/
+		dprintf(STDERR_FILENO, ADD_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
@@ -26,48 +28,53 @@ void op_add(stack_t **head, unsigned int line_number)
 	new =  add_dnodeint(head, sum);
 	if (!new)
 	{
-		line_number = line_number;
-		/*error message, malloc fail */
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
 /**
+* op_sub - find subtraction of first and second element in the stack
+* @head: pointer to first element in the stack
+* @line_number: line read
 *
-*
-*
+* Return: void
 */
 void op_sub(stack_t **head, unsigned int line_number)
 {
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
-	int sum = 0;
+	int sub = 0;
 
 	if (dlistint_len(*head) < 2)
 	{
-		/*error message, not enough elements*/
-		line_number = line_number;
+		dprintf(STDERR_FILENO, SUB_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
 
-	sum = node_0->n - node_1->n;
+	sub = node_0->n - node_1->n;
 	delete_dnodeint_at_index(head, 0);
 	delete_dnodeint_at_index(head, 0);
 
-	new =  add_dnodeint(head, sum);
+	new =  add_dnodeint(head, sub);
 	if (!new)
 	{
-		/*error message, malloc fail */
-		line_number = line_number;
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
 /**
+* op_mul - find product of first and second element in the stack
+* @head: pointer to first element in the stack
+* @line_number: line read
 *
-*
-*
-*
+* Return: void
 */
-
 void op_mul(stack_t **head, unsigned int line_number)
 {
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
@@ -75,8 +82,9 @@ void op_mul(stack_t **head, unsigned int line_number)
 
 	if (dlistint_len(*head) < 2)
 	{
-		line_number = line_number;
-		/*error message, not enough elements*/
+		dprintf(STDERR_FILENO, MUL_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
@@ -88,69 +96,82 @@ void op_mul(stack_t **head, unsigned int line_number)
 	new =  add_dnodeint(head, prod);
 	if (!new)
 	{
-		line_number = line_number;
-		/*error message, malloc fail */
-	}
-}
-
-void op_div(stack_t **head, unsigned int line_number)
-{
-	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
-	int sum = 0;
-
-	if (dlistint_len(*head) < 2)
-	{
-		line_number = line_number;
-		/*error message, not enough elements*/
-	}
-	if (node_0->n == 0)
-	{
-		line_number = line_number;
-		/*error message, cant div by zero */
-	}
-	node_0 = get_dnodeint_at_index(*head, 0);
-	node_1 = get_dnodeint_at_index(*head, 1);
-
-	sum = node_0->n / node_1->n;
-	delete_dnodeint_at_index(head, 0);
-	delete_dnodeint_at_index(head, 0);
-
-	new =  add_dnodeint(head, sum);
-	if (!new)
-	{
-		/*error message, malloc fail */
-		line_number = line_number;
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
 /**
+* op_div - find dividend of first and second element in the stack
+* @head: pointer to first element in the stack
+* @line_number: line read
 *
+* Return: void
+*/
+void op_div(stack_t **head, unsigned int line_number)
+{
+	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
+	int div = 0;
+
+	if (dlistint_len(*head) < 2)
+	{
+		dprintf(STDERR_FILENO, DIV_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
+	if (node_0->n == 0)
+	{
+		free_all(0);
+		exit(EXIT_FAILURE);
+	}
+	node_0 = get_dnodeint_at_index(*head, 0);
+	node_1 = get_dnodeint_at_index(*head, 1);
+
+	div = node_0->n / node_1->n;
+	delete_dnodeint_at_index(head, 0);
+	delete_dnodeint_at_index(head, 0);
+
+	new =  add_dnodeint(head, div);
+	if (!new)
+	{
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+* op_mod - find modulus of first and second element in the stack
+* @head: pointer to first element in the stack
+* @line_number: line read
 *
-*
-*
+* Return: void
 */
 
 void op_mod(stack_t **head, unsigned int line_number)
 {
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
-	int sum = 0;
+	int prod = 0;
 
 	if (dlistint_len(*head) < 2)
 	{
-		line_number = line_number;
-		/*error message, not enough elements*/
+		dprintf(STDERR_FILENO, MOD_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
 
-	sum = node_0->n % node_1->n;
+	mod = node_0->n % node_1->n;
 	delete_dnodeint_at_index(head, 0);
 	delete_dnodeint_at_index(head, 0);
 
-	new =  add_dnodeint(head, sum);
+	new =  add_dnodeint(head, mod);
 	if (!new)
 	{
-		line_number = line_number;
-		/*error message, malloc fail */
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
 	}
 }
