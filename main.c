@@ -10,18 +10,10 @@ global_struct_t global_struct;
  */
 int main(int argc, char *argv[])
 {
-/*i	FILE *fp;
-	stack_t *head = NULL;
-	char *line = NULL;
-*/
 	size_t len = 0;
-
-
 	ssize_t read = 0;
-/*
-	unsigned int linenumber = 1;
-*/
 	void (*opfunc)(stack_t **head, unsigned int linenumber) = NULL;
+
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, USAGE);
@@ -33,20 +25,12 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, FILE_ERROR, argv[1]);
 		exit(EXIT_FAILURE);
 	}
-/*	global_struct = create_global_struct(linenumber,
-			 line, fp, head);
-*/
+
 	while ((read = getline(&global_struct.line,
 			       &len, global_struct.fp)) != -1)
 	{
 		rm_nl(&global_struct.line);
 		global_struct.linenumber++;
-		/* if (wordcount(global_struct.line) == 0) */
-		/* { */
-		/* 	free_all(); */
-		/* 	dprintf(STDERR_FILENO, USAGE); */
-		/* 	exit(EXIT_FAILURE); */
-		/* } */
 		strtok_list(global_struct.line);
 		if (!global_struct.arg)
 			continue;

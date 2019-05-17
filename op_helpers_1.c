@@ -23,7 +23,7 @@ void op_push(stack_t **head, unsigned int line_number)
 	if (num && num[0] == '-')
 		data++;
 
-	while(num && num[data])
+	while (num && num[data])
 		if (!isdigit(num[data++]))
 		{
 			data = -1;

@@ -59,25 +59,12 @@ int _strlen(char *s)
 }
 
 /**
-*
-*
+* strtok_list - tokenize line into argument
+* @line: input string
 *
 */
 
 void strtok_list(char *line)
 {
 	global_struct.arg = strtok(line, " \t\n");
-/*
-	if (global_struct.arg)
-	{
-		free_all();
-		dprintf(STDERR_FILENO, USAGE);
-		exit(EXIT_FAILURE);
-	}
-	if (line)
-	{
-		global_struct.arg = strtok(NULL, " \t");
-		op_push(global_struct.head, global_struct.linenumber)
-	}
-*/
 }

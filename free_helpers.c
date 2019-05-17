@@ -3,9 +3,6 @@
 global_struct_t global_struct;
 /**
 * free_all - free elements in the list
-* @head: pointer to nodes in the list
-* @line: input line
-* @fp: file pointer to open file
 *
 * Return: void
 */
