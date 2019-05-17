@@ -42,15 +42,6 @@ stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
 	stack_t *new = NULL;
 
 
-/*
-	if (!*h)
-	{
-		new->next = NULL;
-		new->prev = NULL;
-		*h = new;
-		return (new);
-	}
-*/
 	temp = *h;
 	if (idx == 0)
 		return (add_dnodeint(h, n));

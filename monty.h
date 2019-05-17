@@ -69,7 +69,9 @@ extern global_struct_t global_struct;
 #define SUB_FAIL "L%u: can't sub, stack too short\n"
 #define MUL_FAIL "L%u: can't mul, stack too short\n"
 #define DIV_FAIL "L%u: can't div, stack too short\n"
+#define DIV_FAIL_2 "L%u: division by zero\n"
 #define MOD_FAIL "L%u: can't mod, stack too short\n"
+#define MOD_FAIL_2 "L%u: division by zero\n"
 #define SWAP_FAIL "L%u: can't swap, stack too short\n"
 
 /* main_helpers.c */

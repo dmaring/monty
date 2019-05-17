@@ -120,13 +120,14 @@ void op_div(stack_t **head, unsigned int line_number)
 		free_all();
 		exit(EXIT_FAILURE);
 	}
+	node_0 = get_dnodeint_at_index(*head, 0);
+	node_1 = get_dnodeint_at_index(*head, 1);
 	if (node_0->n == 0)
 	{
+		dprintf(STDERR_FILENO, DIV_FAIL_2, line_number);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	node_0 = get_dnodeint_at_index(*head, 0);
-	node_1 = get_dnodeint_at_index(*head, 1);
 
 	div = node_1->n / node_0->n;
 	delete_dnodeint_at_index(head, 0);
@@ -162,6 +163,12 @@ void op_mod(stack_t **head, unsigned int line_number)
 	}
 	node_0 = get_dnodeint_at_index(*head, 0);
 	node_1 = get_dnodeint_at_index(*head, 1);
+	if (node_0->n == 0)
+	{
+		dprintf(STDERR_FILENO, MOD_FAIL_2, line_number);
+		free_all();
+		exit(EXIT_FAILURE);
+	}
 
 	mod = node_1->n % node_0->n;
 	delete_dnodeint_at_index(head, 0);
