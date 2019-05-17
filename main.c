@@ -29,10 +29,9 @@ int main(int argc, char *argv[])
 	while ((read = getline(&global_struct.line,
 			       &len, global_struct.fp)) != -1)
 	{
-		rm_nl(&global_struct.line);
 		global_struct.linenumber++;
 		strtok_list(global_struct.line);
-		if (!global_struct.arg)
+		if (!global_struct.arg || *global_struct.arg == '#')
 			continue;
 		opfunc = get_op_func(global_struct.arg);
 		if (opfunc == NULL)
