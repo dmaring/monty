@@ -21,6 +21,8 @@ stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index)
 			break;
 		head = head->next;
 	}
+	if (!head)
+		return (NULL);
 	return (head);
 }
 
@@ -37,12 +39,10 @@ stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
 {
 	unsigned int i;
 	stack_t *temp = NULL;
-	stack_t *new = malloc(sizeof(stack_t));
+	stack_t *new = NULL;
 
-	if (!new || !h)
-		return (NULL);
 
-	new->n = n;
+/*
 	if (!*h)
 	{
 		new->next = NULL;
@@ -50,22 +50,24 @@ stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
 		*h = new;
 		return (new);
 	}
+*/
 	temp = *h;
 	if (idx == 0)
 		return (add_dnodeint(h, n));
-	for (i = 0; temp && temp->next && i <= idx; i++)
+	for (i = 0; temp && i < idx; i++)
 	{
-		if (!temp->next)
-			return (add_dnodeint_end(h, n));
-		if (!temp)
-			return (NULL);
 		if (i == idx - 1)
 		{
+			if (!temp->next)
+				return (add_dnodeint_end(h, n));
+			new = malloc(sizeof(stack_t));
+			if (!new)
+				return (NULL);
+			new->n = n;
 			new->next = NULL;
 			new->next = temp->next;
 			new->prev = temp;
-			if (temp->next)
-				temp->next->prev = new;
+			temp->next->prev = new;
 			temp->next = new;
 			return (new);
 		}
