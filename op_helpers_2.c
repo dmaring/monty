@@ -152,7 +152,7 @@ void op_div(stack_t **head, unsigned int line_number)
 void op_mod(stack_t **head, unsigned int line_number)
 {
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
-	int prod = 0;
+	int mod = 0;
 
 	if (dlistint_len(*head) < 2)
 	{
