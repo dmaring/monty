@@ -17,7 +17,6 @@ void free_all(void)
 		free(global_struct.head);
 		global_struct.head = temp;
 	}
-
 	fclose(global_struct.fp);
 	free(global_struct.line);
 }

@@ -16,6 +16,11 @@ void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber)
 		{"pop", op_pop},
 		{"add", op_add},
 		{"nop", op_nop},
+		{"queue", op_queue},
+		{"stack", op_stack},
+		{"rotl", op_rotl},
+		{"rotr", op_rotr},
+		{"swap", op_swap},
 		{NULL, NULL}
 	};
 

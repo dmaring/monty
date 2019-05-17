@@ -10,19 +10,12 @@
 
 void op_push(stack_t **head, unsigned int line_number)
 {
-	int data = 0;
-	stack_t *new = malloc(sizeof(stack_t));
+	int data = 0, digit = 0;
+	stack_t *new = NULL;
 	char *num = strtok(NULL, " \t\n");
 
-	if (!new)
-	{
-		dprintf(STDERR_FILENO, MALLOC_FAIL);
-		free_all();
-		exit(EXIT_FAILURE);
-	}
 	if (num && num[0] == '-')
 		data++;
-
 	while (num && num[data])
 		if (!isdigit(num[data++]))
 		{
@@ -35,16 +28,17 @@ void op_push(stack_t **head, unsigned int line_number)
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	data = atoi(num);
-	new->n = data;
-	new->prev = NULL;
-	new->next = NULL;
-	if (*head)
+	digit = atoi(num);
+	if (global_struct.flag == 0)
+		new = add_dnodeint(head, digit);
+	else if (global_struct.flag == 1)
+		new = add_dnodeint_end(head, digit);
+	if (!new)
 	{
-		(*head)->prev = new;
-		new->next = *head;
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all();
+		exit(EXIT_FAILURE);
 	}
-	*head = new;
 }
 /**
 * op_pall - print the linked list
@@ -118,6 +112,6 @@ void op_pint(stack_t **head, unsigned int line_number)
 
 void op_nop(stack_t **head, unsigned int line_number)
 {
-	head = head;
-	line_number = line_number;
+	(void)head;
+	(void)line_number;
 }

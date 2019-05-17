@@ -8,7 +8,7 @@
 * Return: new node on success, NULL on failure
 */
 
-stack_t *add_dnodeint_end(stack_t **head, const int n)
+stack_t *add_dnodeint_end(stack_t **head, int n)
 {
 	stack_t *temp;
 	stack_t *new = malloc(sizeof(stack_t));

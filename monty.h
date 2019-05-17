@@ -53,6 +53,7 @@ typedef struct global_struct_s
 	char *arg;
 	FILE *fp;
 	stack_t *head;
+	int flag;
 } global_struct_t;
 
 extern global_struct_t global_struct;
@@ -69,6 +70,7 @@ extern global_struct_t global_struct;
 #define MUL_FAIL "L%u: can't mul, stack too short\n"
 #define DIV_FAIL "L%u: can't div, stack too short\n"
 #define MOD_FAIL "L%u: can't mod, stack too short\n"
+#define SWAP_FAIL "L%u: can't swap, stack too short\n"
 
 /* main_helpers.c */
 void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber);
@@ -83,16 +85,19 @@ void strtok_list(char *line);
 int _atoi(int *num, char *s);
 int _isnum(char c);
 
+/* free_helpers */
+void free_all(void);
+
 /* global_helpers.c */
 global_struct_t *create_global_struct(unsigned int linenumber, char *line,
 					FILE *fp, stack_t *head);
 void free_global_struct(global_struct_t *ptr);
 
 /* ll_helpers_1.c */
-void free_all(void);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
+
 /* ll_helpers_2.c */
-stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *add_dnodeint(stack_t **head, int n);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
 stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n);
 void delete_dnodeint_at_index(stack_t **head, unsigned int index);
@@ -114,5 +119,10 @@ void op_mul(stack_t **head, unsigned int line_number);
 
 /*op_helpers_3 */
 /*void op_swap(stack_t **head, unsigned int line_number);*/
+void op_stack(stack_t **head, unsigned int line_number);
+void op_queue(stack_t **head, unsigned int line_number);
+void op_rotl(stack_t **head, unsigned int line_number);
+void op_rotr(stack_t **head, unsigned int line_number);
+void op_swap(stack_t **head, unsigned int line_number);
 
 #endif

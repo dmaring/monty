@@ -50,28 +50,28 @@ stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
 		*h = new;
 		return (new);
 	}
-
 	temp = *h;
-
 	if (idx == 0)
 		return (add_dnodeint(h, n));
-
 	for (i = 0; temp && temp->next && i <= idx; i++)
 	{
-		temp = temp->next;
+		if (!temp->next)
+			return (add_dnodeint_end(h, n));
 		if (!temp)
 			return (NULL);
 		if (i == idx - 1)
 		{
+			new->next = NULL;
 			new->next = temp->next;
-			new->prev = temp->prev;
-			temp->prev->next = new;
-			temp->next->prev = new;
+			new->prev = temp;
+			if (temp->next)
+				temp->next->prev = new;
+			temp->next = new;
 			return (new);
 		}
+		else
+			temp = temp->next;
 	}
-	if (!temp->next)
-		return (add_dnodeint_end(h, n));
 	return (NULL);
 }
 
@@ -82,7 +82,7 @@ stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
  *
  * Return: new node address
  */
-stack_t *add_dnodeint(stack_t **head, const int n)
+stack_t *add_dnodeint(stack_t **head, int n)
 {
 	stack_t *new = malloc(sizeof(stack_t));
 

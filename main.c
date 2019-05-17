@@ -1,6 +1,6 @@
 #include "monty.h"
 
-global_struct_t global_struct;
+global_struct_t global_struct = {NULL, 0, NULL, NULL, NULL, 0};
 
 /**
  * main - main function for Monty interpreter
@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
 		if (!global_struct.arg)
 			continue;
 		opfunc = get_op_func(global_struct.arg);
-
 		if (opfunc == NULL)
 		{
 			dprintf(STDERR_FILENO, UNKNOWN,
@@ -44,7 +43,6 @@ int main(int argc, char *argv[])
 			free_all();
 			exit(EXIT_FAILURE);
 		}
-
 		opfunc(&global_struct.head, global_struct.linenumber);
 	}
 	free_all();
