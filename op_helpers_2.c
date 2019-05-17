@@ -46,6 +46,7 @@ void op_sub(stack_t **head, unsigned int line_number)
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
 	int sub = 0;
 
+	printf("we here\n");
 	if (dlistint_len(*head) < 2)
 	{
 		dprintf(STDERR_FILENO, SUB_FAIL, line_number);
