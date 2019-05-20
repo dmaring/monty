@@ -8,7 +8,8 @@ ______________________________________________________________________________
 
 All files should be compiled with ``` gcc -Wall -Werror -Wextra -pedantic *.c -o monty```.
 
-### Usage: ```monty file```
+### Usage: 
+```monty file```
 
 ## Example:
 
@@ -27,7 +28,7 @@ pint
 1 
 3
 ```
-# Monty Bytecode Commands
+## Monty Bytecode Commands
 
 - ```push <int>``` - pushes an integer onto the top of the stack
 
@@ -96,3 +97,23 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 ```
+_______________________________________________________________________________
+
+## File Descriptions
+- 'monty.h' - function declarations
+- 'main.c' - entry point, getline loop
+- 'll_helpers_1' - add node at end function
+- 'll_helpers_2' - linked list functions to manipulate the stack
+- 'main_helpers.c' - struct of opcodes corresponding functions
+- 'op_helpers_1' - push, pall, pop, pint, and nop opcodes
+- 'op_helpers_2' - add, sub, mul, div, and mod opcodes
+- 'op_helpers_3' - stack, queue, rotl, rotr, and swap opcodes
+- 'str_helpers 1 & 2' - string modifying functions
+
+________________________________________________________________________________
+
+## Authors
+
+*Scout Curry* <https://github.com/scurry222>
+
+*Drew Maring* <https://github.com/dmaring>
