@@ -14,22 +14,22 @@ All files should be compiled with > gcc -Wall -Werror -Wextra -pedantic *.c -o m
 
 ### Structure of a Monty bytecode file:
 
- - push 1
- -
- - push 2
- -
- - push 3
- -
- - pall
- -
- - pint
+>  push 1
+> 
+>  push 2
+> 
+>  push 3
+> 
+> pall
+>
+> pint
 
 ### Output
 
- - 3
- -
- - 2
- -
- - 1
- -
- - 3
+>  3
+> 
+>  2
+>
+> 1
+> 
+>  3
