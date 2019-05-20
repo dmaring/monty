@@ -13,7 +13,7 @@ All files should be compiled with > gcc -Wall -Werror -Wextra -pedantic *.c -o m
 ## Example:
 
 ### Structure of a Monty bytecode file:
-
+```
 >  push 1
 > 
 >  push 2
@@ -23,9 +23,9 @@ All files should be compiled with > gcc -Wall -Werror -Wextra -pedantic *.c -o m
 > pall
 >
 > pint
-
+```
 ### Output
-
+```
 >  3
 > 
 >  2
@@ -33,3 +33,4 @@ All files should be compiled with > gcc -Wall -Werror -Wextra -pedantic *.c -o m
 > 1
 > 
 >  3
+```
