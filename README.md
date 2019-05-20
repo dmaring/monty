@@ -100,15 +100,15 @@ typedef struct instruction_s
 _______________________________________________________________________________
 
 ## File Descriptions
-- 'monty.h' - function declarations
-- 'main.c' - entry point, getline loop
-- 'll_helpers_1' - add node at end function
-- 'll_helpers_2' - linked list functions to manipulate the stack
-- 'main_helpers.c' - struct of opcodes corresponding functions
-- 'op_helpers_1' - push, pall, pop, pint, and nop opcodes
-- 'op_helpers_2' - add, sub, mul, div, and mod opcodes
-- 'op_helpers_3' - stack, queue, rotl, rotr, and swap opcodes
-- 'str_helpers 1 & 2' - string modifying functions
+- `monty.h` - function declarations
+- `main.c` - entry point, getline loop
+- `ll_helpers_1` - add node at end function
+- `ll_helpers_2` - linked list functions to manipulate the stack
+- `main_helpers.c` - struct of opcodes corresponding functions
+- `op_helpers_1` - push, pall, pop, pint, and nop opcodes
+- `op_helpers_2` - add, sub, mul, div, and mod opcodes
+- `op_helpers_3` - stack, queue, rotl, rotr, and swap opcodes
+- `str_helpers 1 & 2` - string modifying functions
 
 ________________________________________________________________________________
 
