@@ -114,6 +114,6 @@ ________________________________________________________________________________
 
 ## Authors
 
-*Scout Curry* <https://github.com/scurry222>
+[Scout Curry](https://github.com/scurry222)
 
-*Drew Maring* <https://github.com/dmaring>
+[Drew Maring](https://github.com/dmaring)
