@@ -46,15 +46,13 @@ void op_pstr(stack_t **head, unsigned int line_number)
 	(void)line_number;
 	while (node->next)
 	{
-        	if (node->n >= 0 && node->n <= 127)
+        	if (node->n > 0 && node->n <= 127)
         	{
         	        putchar(node->n);
 			node = node->next;
         	}
 		else
-		{
 			break;
-		}
 	}
 	putchar('\n');
 }
