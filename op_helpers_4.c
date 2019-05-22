@@ -13,7 +13,7 @@ void op_pchar(stack_t **head, unsigned int line_number)
 
 	if (!node)
 	{
-		dprintf(STDERR_FILENO, PCHAR_FAIL, line_number);
+		dprintf(STDERR_FILENO, PCHAR_FAIL_2, line_number);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
@@ -24,7 +24,7 @@ void op_pchar(stack_t **head, unsigned int line_number)
 	}
 	else
 	{
-		dprintf(STDERR_FILENO, PCHAR_FAIL_2, line_number);
+		dprintf(STDERR_FILENO, PCHAR_FAIL, line_number);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
@@ -44,7 +44,7 @@ void op_pstr(stack_t **head, unsigned int line_number)
         stack_t *node = *head;
 
 	(void)line_number;
-	while (node->next)
+	while (node)
 	{
         	if (node->n > 0 && node->n <= 127)
         	{
