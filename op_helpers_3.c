@@ -40,7 +40,7 @@ void op_rotl(stack_t **head, unsigned int line_number)
 	stack_t *temp = *head;
 	int num = 0;
 
-	line_number = line_number;
+	(void)line_number;
 	if (!*head)
 		return;
 	temp = get_dnodeint_at_index(*head, 0);

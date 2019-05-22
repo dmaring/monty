@@ -73,6 +73,8 @@ extern global_struct_t global_struct;
 #define MOD_FAIL "L%u: can't mod, stack too short\n"
 #define MOD_FAIL_2 "L%u: division by zero\n"
 #define SWAP_FAIL "L%u: can't swap, stack too short\n"
+#define PCHAR_FAIL "L%u: can't pchar, value out of range\n"
+#define PCHAR_FAIL_2 "L%u: can't pchar, stack empty\n"
 
 /* main_helpers.c */
 void (*get_op_func(char *s))(stack_t **head, unsigned int linenumber);
@@ -83,6 +85,7 @@ void rm_nl(char **lineptr);
 int wordcount(char *str);
 char **strtow(char *str);
 void strtok_list(char *line);
+
 /* str_helpers_2.c */
 int _atoi(int *num, char *s);
 int _isnum(char c);
@@ -126,5 +129,9 @@ void op_queue(stack_t **head, unsigned int line_number);
 void op_rotl(stack_t **head, unsigned int line_number);
 void op_rotr(stack_t **head, unsigned int line_number);
 void op_swap(stack_t **head, unsigned int line_number);
+
+/* op_helpers_4 */
+void op_pchar(stack_t **head, unsigned int line_number);
+void op_pstr(stack_t **head, unsigned int line_number);
 
 #endif
